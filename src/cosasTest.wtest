@@ -1,0 +1,79 @@
+import cosas.*
+
+describe "embalaje y residuos" {
+	
+	method initialize(){
+		residuos.setPeso(30)
+		embalaje.envolver(residuos)		
+	}
+
+	test "peso y peligrosidad del embalaje"{
+		assert.equals(30, embalaje.peso())
+		assert.equals(100, embalaje.nivelPeligrosidad())
+	}
+	
+	test "peso y peligrosidad del residuo"{
+		assert.equals(30, residuos.peso())
+		assert.equals(200, residuos.nivelPeligrosidad())
+	}
+}
+
+describe "contenedor portuario"{
+	
+	method initialize(){
+		contenedorPortuario.meterAlgo(knightRider)
+		contenedorPortuario.meterAlgo(bumblebee)
+		contenedorPortuario.meterAlgo(bateriaAntiaerea)
+		bateriaAntiaerea.setMisiles()
+	}
+	
+	test "peso y peligrosidad con knightRider, bumblebee y bateriaAntiaerea"{
+		assert.equals(1700, contenedorPortuario.peso())
+		assert.equals(100, contenedorPortuario.nivelPeligrosidad())
+	}
+	
+}
+
+describe "ladrillos"{
+	method initialize(){
+		paqueteLadrillos.setCantidad(50)
+	}
+	
+	test "peso de los ladrillos"{
+		assert.equals(100, paqueteLadrillos.peso() )
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

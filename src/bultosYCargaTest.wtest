@@ -1,0 +1,42 @@
+import cosas2.*
+import camion2.*
+
+describe "Total bultos y consecuencias de carga"{
+	method initialize(){
+		camion.cargar(knightRider)
+		camion.cargar(bumblebee)
+		camion.cargar(paqueteLadrillos)
+		camion.cargar(arenaAGranel)
+		camion.cargar(bateriaAntiaerea)
+		contenedorPortuario.meterAlgo(residuos)
+		camion.cargar(contenedorPortuario)
+		camion.cargar(residuos)
+		camion.cargar(embalaje)
+	}
+	
+	test "totalBultos"{
+		assert.equals(12, camion.totalBultos() )
+	}
+	
+	test "bumblebee se transforma en robot al ser cargado"{
+		assert.equals(30, bumblebee.nivelPeligrosidad())
+	}
+	
+	test "se agregan 12 ladrillos al cargar el paquete"{
+		assert.equals(24, paqueteLadrillos.peso())
+	}
+	
+	test "se agrega 20kg de arena granel al ser cargado"{
+		assert.equals(20, arenaAGranel.peso())
+	}
+	
+	test "bateria antiaerea carga misiles al ser cargado"{
+		assert.equals(300, bateriaAntiaerea.peso())
+	}
+	
+	test "las cosas dentro del contenedor reaccional al ser cargadas"{
+		assert.equals(30, residuos.peso())
+	}
+	
+	
+}

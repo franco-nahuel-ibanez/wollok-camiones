@@ -1,0 +1,62 @@
+import camion.*
+import cosas.*
+
+describe "cosas dentro del camion"{
+	
+	method initialize(){
+		bumblebee.transformar()
+		arenaAGranel.setPeso(150)
+		bateriaAntiaerea.setMisiles()
+		paqueteLadrillos.setCantidad(80)
+		embalaje.envolver(paqueteLadrillos)
+	
+		camion.cargar(bumblebee)
+		camion.cargar(arenaAGranel)
+		camion.cargar(bateriaAntiaerea)
+		camion.cargar(embalaje)
+	}
+	
+	test "peso par"{
+		assert.that(camion.todoPesoPar())
+	}
+	
+	test "el peso de bateria aerea cambia ya que tiene misiles"{
+		assert.that(camion.hayAlgunoQuePesa(300))
+	}
+	
+	test "bumblebee robot tiene un nivel de peligrosidad de 30"{
+		assert.that( bumblebee == camion.elDeNivel(30) )
+	}
+	
+	test "total peso"{
+		assert.equals(2410, camion.pesoTotal())
+	}
+	
+	test "el camion no esta exedido de peso"{
+		assert.notThat(camion.excedidoDePeso())
+	}
+	
+	test "nivel de peligrosidad mayor a 50"{
+		assert.that( [bateriaAntiaerea] == camion.objetosQueSuperanPeligrosidad(50) )
+	}
+	
+	test "mostrar bateria antiaerea como objeto mas peligroso"{
+		assert.that([bateriaAntiaerea] == camion.objetosMasPeligrososQue(bumblebee))
+	}
+	
+	test "puede circular en ruta con una peligrosidad maxima de 150"{
+		assert.that(camion.puedeCircularEnRuta(150))
+	}
+	
+	test "no puede circular en ruta con una peligrosidad maxima de 50"{
+		assert.notThat(camion.puedeCircularEnRuta(50))
+	}
+	
+	test "tiene cosas que pesen entre 100 y 500"{
+		assert.that(camion.tieneAlgoQuePesaEntre(100, 500))
+	}
+	
+	test "bumblebee es el objeto mas pesado"{
+		assert.that(camion.cosaMasPesada())
+	}
+}
